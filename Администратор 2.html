@@ -1,0 +1,1830 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <title>VOTE — Администратор</title>
+
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+
+        :root {
+
+            --black: #111318;
+            --gray: #6d737d;
+            --light-gray: #f4f5f7;
+            --border: #e3e5e8;
+            --red: #d92d3a;
+            --red-dark: #b9232f;
+            --green: #16834b;
+            --white: #ffffff;
+
+        }
+
+
+        body {
+
+            min-height: 100vh;
+
+            background: var(--light-gray);
+
+            color: var(--black);
+
+            font-family:
+                -apple-system,
+                BlinkMacSystemFont,
+                "Segoe UI",
+                Roboto,
+                Arial,
+                sans-serif;
+
+        }
+
+
+        /* ===============================
+           HEADER
+        =============================== */
+
+        header {
+
+            height: 76px;
+
+            background: white;
+
+            border-bottom:
+                1px solid var(--border);
+
+        }
+
+
+        .header-container {
+
+            max-width: 1100px;
+
+            height: 100%;
+
+            margin: auto;
+
+            padding: 0 24px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+        }
+
+
+        .logo {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 10px;
+
+            font-size: 20px;
+
+            font-weight: 800;
+
+        }
+
+
+        .logo-mark {
+
+            width: 34px;
+
+            height: 34px;
+
+            border-radius: 9px;
+
+            background: var(--red);
+
+            color: white;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+        }
+
+
+        .admin-area {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 18px;
+
+        }
+
+
+        .admin-status {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 7px;
+
+            color: var(--gray);
+
+            font-size: 11px;
+
+        }
+
+
+        .status-dot {
+
+            width: 8px;
+
+            height: 8px;
+
+            border-radius: 50%;
+
+            background: var(--green);
+
+        }
+
+
+        .logout-button {
+
+            border: none;
+
+            background: transparent;
+
+            color: var(--gray);
+
+            font-size: 11px;
+
+            cursor: pointer;
+
+        }
+
+
+        .logout-button:hover {
+
+            color: var(--red);
+
+        }
+
+
+        /* ===============================
+           MAIN
+        =============================== */
+
+        main {
+
+            max-width: 1100px;
+
+            margin: auto;
+
+            padding:
+                45px 24px 70px;
+
+        }
+
+
+        .page-label {
+
+            color: var(--red);
+
+            font-size: 11px;
+
+            font-weight: 800;
+
+            text-transform: uppercase;
+
+            letter-spacing: 1px;
+
+        }
+
+
+        h1 {
+
+            margin-top: 8px;
+
+            font-size: 32px;
+
+            letter-spacing: -1px;
+
+        }
+
+
+        .subtitle {
+
+            margin-top: 8px;
+
+            max-width: 700px;
+
+            color: var(--gray);
+
+            font-size: 13px;
+
+            line-height: 1.6;
+
+        }
+
+
+        /* ===============================
+           STAT CARDS
+        =============================== */
+
+        .stats {
+
+            margin-top: 30px;
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(4, 1fr);
+
+            gap: 14px;
+
+        }
+
+
+        .stat-card {
+
+            background: white;
+
+            border:
+                1px solid var(--border);
+
+            border-radius: 13px;
+
+            padding: 21px;
+
+        }
+
+
+        .stat-label {
+
+            color: var(--gray);
+
+            font-size: 11px;
+
+        }
+
+
+        .stat-value {
+
+            margin-top: 9px;
+
+            font-size: 30px;
+
+            font-weight: 800;
+
+            letter-spacing: -1px;
+
+        }
+
+
+        .stat-description {
+
+            margin-top: 5px;
+
+            color: var(--gray);
+
+            font-size: 10px;
+
+        }
+
+
+        /* ===============================
+           CONTENT
+        =============================== */
+
+        .grid {
+
+            margin-top: 20px;
+
+            display: grid;
+
+            grid-template-columns:
+                1.25fr .75fr;
+
+            gap: 20px;
+
+        }
+
+
+        .panel {
+
+            background: white;
+
+            border:
+                1px solid var(--border);
+
+            border-radius: 14px;
+
+            padding: 25px;
+
+        }
+
+
+        .panel-header {
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: flex-start;
+
+            gap: 15px;
+
+        }
+
+
+        .panel-title {
+
+            font-size: 17px;
+
+            font-weight: 700;
+
+        }
+
+
+        .panel-description {
+
+            margin-top: 5px;
+
+            color: var(--gray);
+
+            font-size: 11px;
+
+            line-height: 1.5;
+
+        }
+
+
+        .refresh-button {
+
+            height: 35px;
+
+            padding: 0 14px;
+
+            border:
+                1px solid var(--border);
+
+            border-radius: 7px;
+
+            background: white;
+
+            font-size: 11px;
+
+            font-weight: 600;
+
+            cursor: pointer;
+
+        }
+
+
+        .refresh-button:hover {
+
+            border-color: #b8bdc4;
+
+        }
+
+
+        .update-time {
+
+            margin-top: 7px;
+
+            color: var(--gray);
+
+            font-size: 9px;
+
+        }
+
+
+        /* ===============================
+           RESULTS
+        =============================== */
+
+        .results {
+
+            margin-top: 23px;
+
+        }
+
+
+        .result-row {
+
+            margin-top: 20px;
+
+        }
+
+
+        .result-row:first-child {
+
+            margin-top: 0;
+
+        }
+
+
+        .result-top {
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            font-size: 12px;
+
+        }
+
+
+        .result-name {
+
+            font-weight: 600;
+
+        }
+
+
+        .result-count {
+
+            font-weight: 800;
+
+        }
+
+
+        .progress {
+
+            height: 8px;
+
+            margin-top: 8px;
+
+            background: #eceef1;
+
+            border-radius: 20px;
+
+            overflow: hidden;
+
+        }
+
+
+        .progress-bar {
+
+            width: 0%;
+
+            height: 100%;
+
+            border-radius: 20px;
+
+            background: var(--red);
+
+            transition:
+                width .4s ease;
+
+        }
+
+
+        /* ===============================
+           SYSTEM
+        =============================== */
+
+        .system-list {
+
+            margin-top: 20px;
+
+        }
+
+
+        .system-item {
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            padding: 13px 0;
+
+            border-bottom:
+                1px solid var(--border);
+
+        }
+
+
+        .system-item:last-child {
+
+            border-bottom: none;
+
+        }
+
+
+        .system-name {
+
+            color: var(--gray);
+
+            font-size: 11px;
+
+        }
+
+
+        .system-value {
+
+            font-size: 11px;
+
+            font-weight: 700;
+
+        }
+
+
+        .ok {
+
+            color: var(--green);
+
+        }
+
+
+        /* ===============================
+           PRIVACY
+        =============================== */
+
+        .privacy {
+
+            margin-top: 20px;
+
+            background: var(--black);
+
+            color: white;
+
+            border-radius: 13px;
+
+            padding: 21px;
+
+        }
+
+
+        .privacy-title {
+
+            font-size: 13px;
+
+            font-weight: 700;
+
+        }
+
+
+        .privacy-text {
+
+            margin-top: 7px;
+
+            max-width: 850px;
+
+            color: #bfc3c9;
+
+            font-size: 10px;
+
+            line-height: 1.7;
+
+        }
+
+
+        /* ===============================
+           DEMO WARNING
+        =============================== */
+
+        .warning {
+
+            margin-top: 18px;
+
+            padding: 14px 16px;
+
+            border:
+                1px solid #f0d5d8;
+
+            border-radius: 9px;
+
+            background: #fff8f8;
+
+            color: var(--red);
+
+            font-size: 10px;
+
+            line-height: 1.6;
+
+        }
+
+
+        @media (max-width: 850px) {
+
+            .stats {
+
+                grid-template-columns:
+                    repeat(2, 1fr);
+
+            }
+
+
+            .grid {
+
+                grid-template-columns: 1fr;
+
+            }
+
+        }
+
+
+        @media (max-width: 550px) {
+
+            main {
+
+                padding:
+                    30px 16px 50px;
+
+            }
+
+
+            .header-container {
+
+                padding:
+                    0 16px;
+
+            }
+
+
+            .admin-status {
+
+                display: none;
+
+            }
+
+
+            .stats {
+
+                grid-template-columns: 1fr;
+
+            }
+
+
+            h1 {
+
+                font-size: 27px;
+
+            }
+
+
+            .panel {
+
+                padding: 20px;
+
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<!-- =========================================
+     HEADER
+========================================= -->
+
+<header>
+
+    <div class="header-container">
+
+
+        <div class="logo">
+
+            <div class="logo-mark">
+                V
+            </div>
+
+            VOTE
+
+        </div>
+
+
+        <div class="admin-area">
+
+
+            <div class="admin-status">
+
+                <div class="status-dot"></div>
+
+                Администратор
+
+            </div>
+
+
+            <button
+                class="logout-button"
+                onclick="logoutAdmin()">
+
+                Выйти
+
+            </button>
+
+
+        </div>
+
+    </div>
+
+</header>
+
+
+
+<!-- =========================================
+     MAIN
+========================================= -->
+
+<main>
+
+
+    <div class="page-label">
+
+        Панель управления
+
+    </div>
+
+
+    <h1>
+
+        Результаты голосования
+
+    </h1>
+
+
+    <p class="subtitle">
+
+        Здесь отображается агрегированная
+        статистика голосования.
+
+        Данные личности избирателей
+        не должны отображаться
+        вместе с их выбором.
+
+    </p>
+
+
+
+    <!-- =====================================
+         STATISTICS
+    ====================================== -->
+
+    <section class="stats">
+
+
+        <div class="stat-card">
+
+            <div class="stat-label">
+
+                Зарегистрировано
+
+            </div>
+
+
+            <div
+                class="stat-value"
+                id="usersCount">
+
+                0
+
+            </div>
+
+
+            <div class="stat-description">
+
+                пользователей
+
+            </div>
+
+        </div>
+
+
+
+        <div class="stat-card">
+
+            <div class="stat-label">
+
+                Право голоса
+
+            </div>
+
+
+            <div
+                class="stat-value"
+                id="verifiedCount">
+
+                0
+
+            </div>
+
+
+            <div class="stat-description">
+
+                подтверждений
+
+            </div>
+
+        </div>
+
+
+
+        <div class="stat-card">
+
+            <div class="stat-label">
+
+                Бюллетени
+
+            </div>
+
+
+            <div
+                class="stat-value"
+                id="ballotsCount">
+
+                0
+
+            </div>
+
+
+            <div class="stat-description">
+
+                анонимных бюллетеней
+
+            </div>
+
+        </div>
+
+
+
+        <div class="stat-card">
+
+            <div class="stat-label">
+
+                Голоса
+
+            </div>
+
+
+            <div
+                class="stat-value"
+                id="votesCount">
+
+                0
+
+            </div>
+
+
+            <div class="stat-description">
+
+                принятых голосов
+
+            </div>
+
+        </div>
+
+
+    </section>
+
+
+
+    <!-- =====================================
+         CONTENT
+    ====================================== -->
+
+    <section class="grid">
+
+
+        <!-- RESULTS -->
+
+        <div class="panel">
+
+
+            <div class="panel-header">
+
+
+                <div>
+
+                    <div class="panel-title">
+
+                        Результаты
+
+                    </div>
+
+
+                    <div class="panel-description">
+
+                        Распределение принятых
+                        голосов.
+
+                    </div>
+
+
+                    <div
+                        class="update-time"
+                        id="updateTime">
+
+                        Загрузка...
+
+                    </div>
+
+                </div>
+
+
+                <button
+                    class="refresh-button"
+                    onclick="loadStatistics()">
+
+                    Обновить
+
+                </button>
+
+
+            </div>
+
+
+
+            <div class="results">
+
+
+                <!-- OPTION 1 -->
+
+                <div class="result-row">
+
+
+                    <div class="result-top">
+
+                        <span class="result-name">
+
+                            Вариант №1
+
+                        </span>
+
+
+                        <span
+                            class="result-count"
+                            id="result1">
+
+                            0
+
+                        </span>
+
+                    </div>
+
+
+                    <div class="progress">
+
+                        <div
+                            class="progress-bar"
+                            id="bar1">
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- OPTION 2 -->
+
+                <div class="result-row">
+
+
+                    <div class="result-top">
+
+                        <span class="result-name">
+
+                            Вариант №2
+
+                        </span>
+
+
+                        <span
+                            class="result-count"
+                            id="result2">
+
+                            0
+
+                        </span>
+
+                    </div>
+
+
+                    <div class="progress">
+
+                        <div
+                            class="progress-bar"
+                            id="bar2">
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- OPTION 3 -->
+
+                <div class="result-row">
+
+
+                    <div class="result-top">
+
+                        <span class="result-name">
+
+                            Вариант №3
+
+                        </span>
+
+
+                        <span
+                            class="result-count"
+                            id="result3">
+
+                            0
+
+                        </span>
+
+                    </div>
+
+
+                    <div class="progress">
+
+                        <div
+                            class="progress-bar"
+                            id="bar3">
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- AGAINST ALL -->
+
+                <div class="result-row">
+
+
+                    <div class="result-top">
+
+                        <span class="result-name">
+
+                            Против всех
+
+                        </span>
+
+
+                        <span
+                            class="result-count"
+                            id="resultAgainst">
+
+                            0
+
+                        </span>
+
+                    </div>
+
+
+                    <div class="progress">
+
+                        <div
+                            class="progress-bar"
+                            id="barAgainst">
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+
+
+        <!-- SYSTEM -->
+
+        <div class="panel">
+
+
+            <div class="panel-title">
+
+                Состояние системы
+
+            </div>
+
+
+            <div class="panel-description">
+
+                Техническое состояние
+                текущего прототипа.
+
+            </div>
+
+
+            <div class="system-list">
+
+
+                <div class="system-item">
+
+                    <span class="system-name">
+
+                        Авторизация
+
+                    </span>
+
+
+                    <span
+                        class="system-value ok">
+
+                        Активна
+
+                    </span>
+
+                </div>
+
+
+
+                <div class="system-item">
+
+                    <span class="system-name">
+
+                        Проверка личности
+
+                    </span>
+
+
+                    <span
+                        class="system-value ok">
+
+                        Доступна
+
+                    </span>
+
+                </div>
+
+
+
+                <div class="system-item">
+
+                    <span class="system-name">
+
+                        ИИН
+
+                    </span>
+
+
+                    <span
+                        class="system-value ok">
+
+                        Тестовая база
+
+                    </span>
+
+                </div>
+
+
+
+                <div class="system-item">
+
+                    <span class="system-name">
+
+                        Одноразовые токены
+
+                    </span>
+
+
+                    <span
+                        class="system-value ok">
+
+                        Активны
+
+                    </span>
+
+                </div>
+
+
+
+                <div class="system-item">
+
+                    <span class="system-name">
+
+                        Анонимные бюллетени
+
+                    </span>
+
+
+                    <span
+                        class="system-value ok">
+
+                        Активны
+
+                    </span>
+
+                </div>
+
+
+
+                <div class="system-item">
+
+                    <span class="system-name">
+
+                        Сервер
+
+                    </span>
+
+
+                    <span class="system-value">
+
+                        Не подключён
+
+                    </span>
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+
+    </section>
+
+
+
+    <!-- =====================================
+         PRIVACY
+    ====================================== -->
+
+    <section class="privacy">
+
+
+        <div class="privacy-title">
+
+            Архитектура анонимности
+
+        </div>
+
+
+        <div class="privacy-text">
+
+            После подтверждения права голоса
+            пользователь получает одноразовый
+            токен. При отправке бюллетень
+            сохраняется отдельно от данных
+            личности.
+
+            В объекте anonymous_ballots
+            отсутствуют ИИН, email и данные
+            пользовательского аккаунта.
+
+            Реестр voted_iins используется
+            отдельно для контроля правила
+            «один ИИН — один голос».
+
+            В реальной системе эти компоненты
+            должны находиться на сервере
+            и быть защищены от изменения
+            пользователем.
+
+        </div>
+
+
+    </section>
+
+
+
+    <!-- =====================================
+         WARNING
+    ====================================== -->
+
+    <div class="warning">
+
+        ВНИМАНИЕ: текущая версия является
+        демонстрационным фронтенд-прототипом.
+
+        Данные хранятся в localStorage браузера
+        и не являются защищённым хранилищем.
+
+        Пользователь технически может изменить
+        эти данные через инструменты разработчика.
+
+        Для реального голосования необходим
+        сервер, база данных, криптографическая
+        инфраструктура и контроль целостности
+        данных.
+
+    </div>
+
+
+</main>
+
+
+
+<script>
+
+
+/* =================================================
+   ПРОВЕРКА АДМИНИСТРАТОРА
+================================================= */
+
+
+const adminAuthenticated =
+    sessionStorage.getItem(
+        "admin_authenticated"
+    );
+
+
+if (
+    adminAuthenticated !== "true"
+) {
+
+    window.location.href =
+        "admin-login.html";
+
+}
+
+
+
+/* =================================================
+   БЕЗОПАСНОЕ ПОЛУЧЕНИЕ МАССИВА
+================================================= */
+
+
+function getArray(
+    key
+) {
+
+
+    try {
+
+        const data =
+            JSON.parse(
+                localStorage.getItem(key)
+            );
+
+
+        if (
+            Array.isArray(data)
+        ) {
+
+            return data;
+
+        }
+
+
+        return [];
+
+    }
+
+    catch (error) {
+
+        return [];
+
+    }
+
+}
+
+
+
+/* =================================================
+   ЗАГРУЗКА СТАТИСТИКИ
+================================================= */
+
+
+function loadStatistics() {
+
+
+    /*
+     * Пользователи
+     */
+
+
+    const users =
+        getArray(
+            "vote_users"
+        );
+
+
+    document.getElementById(
+        "usersCount"
+    ).textContent =
+        users.length;
+
+
+
+    /*
+     * Подтверждённые пользователи
+     */
+
+
+    const verifiedUsers =
+        getArray(
+            "verified_users"
+        );
+
+
+    document.getElementById(
+        "verifiedCount"
+    ).textContent =
+        verifiedUsers.length;
+
+
+
+    /*
+     * Анонимные бюллетени
+     */
+
+
+    const ballots =
+        getArray(
+            "anonymous_ballots"
+        );
+
+
+    document.getElementById(
+        "ballotsCount"
+    ).textContent =
+        ballots.length;
+
+
+
+    /*
+     * Голоса
+     */
+
+
+    const votes =
+        getArray(
+            "vote_results"
+        );
+
+
+    let result1 = 0;
+
+    let result2 = 0;
+
+    let result3 = 0;
+
+    let resultAgainst = 0;
+
+
+
+    votes.forEach(
+        function(vote) {
+
+
+            /*
+             * Поддерживаем также
+             * несколько возможных форматов.
+             */
+
+
+            let value =
+                vote;
+
+
+            /*
+             * Если когда-нибудь
+             * vote_results будет хранить
+             * объект:
+             *
+             * { choice: "candidate_1" }
+             *
+             * тоже обработаем.
+             */
+
+
+            if (
+                typeof vote === "object" &&
+                vote !== null
+            ) {
+
+                value =
+                    vote.choice ||
+                    vote.selectedVote ||
+                    vote.option ||
+                    vote.value;
+
+            }
+
+
+
+            if (
+                value === "candidate_1"
+            ) {
+
+                result1++;
+
+            }
+
+            else if (
+                value === "candidate_2"
+            ) {
+
+                result2++;
+
+            }
+
+            else if (
+                value === "candidate_3"
+            ) {
+
+                result3++;
+
+            }
+
+            else if (
+                value === "against_all"
+            ) {
+
+                resultAgainst++;
+
+            }
+
+        }
+    );
+
+
+
+    /*
+     * Общее количество
+     */
+
+
+    const totalVotes =
+        result1 +
+        result2 +
+        result3 +
+        resultAgainst;
+
+
+    document.getElementById(
+        "votesCount"
+    ).textContent =
+        totalVotes;
+
+
+
+    /*
+     * Значения
+     */
+
+
+    document.getElementById(
+        "result1"
+    ).textContent =
+        result1;
+
+
+    document.getElementById(
+        "result2"
+    ).textContent =
+        result2;
+
+
+    document.getElementById(
+        "result3"
+    ).textContent =
+        result3;
+
+
+    document.getElementById(
+        "resultAgainst"
+    ).textContent =
+        resultAgainst;
+
+
+
+    /*
+     * Проценты
+     */
+
+
+    if (
+        totalVotes === 0
+    ) {
+
+        setProgress(
+            "bar1",
+            0
+        );
+
+        setProgress(
+            "bar2",
+            0
+        );
+
+        setProgress(
+            "bar3",
+            0
+        );
+
+        setProgress(
+            "barAgainst",
+            0
+        );
+
+    }
+
+    else {
+
+        setProgress(
+            "bar1",
+            result1 /
+            totalVotes *
+            100
+        );
+
+
+        setProgress(
+            "bar2",
+            result2 /
+            totalVotes *
+            100
+        );
+
+
+        setProgress(
+            "bar3",
+            result3 /
+            totalVotes *
+            100
+        );
+
+
+        setProgress(
+            "barAgainst",
+            resultAgainst /
+            totalVotes *
+            100
+        );
+
+    }
+
+
+
+    /*
+     * Время обновления
+     */
+
+
+    const now =
+        new Date();
+
+
+    document.getElementById(
+        "updateTime"
+    ).textContent =
+        "Обновлено: " +
+        now.toLocaleTimeString(
+            "ru-RU"
+        );
+
+}
+
+
+
+/* =================================================
+   PROGRESS BAR
+================================================= */
+
+
+function setProgress(
+    id,
+    value
+) {
+
+
+    const element =
+        document.getElementById(id);
+
+
+    if (!element) {
+
+        return;
+
+    }
+
+
+    element.style.width =
+        Math.max(
+            0,
+            Math.min(
+                100,
+                value
+            )
+        ) + "%";
+
+}
+
+
+
+/* =================================================
+   ВЫХОД
+================================================= */
+
+
+function logoutAdmin() {
+
+
+    sessionStorage.removeItem(
+        "admin_authenticated"
+    );
+
+
+    window.location.href =
+        "admin-login.html";
+
+}
+
+
+
+/* =================================================
+   ПЕРВОНАЧАЛЬНАЯ ЗАГРУЗКА
+================================================= */
+
+
+loadStatistics();
+
+
+
+/* =================================================
+   АВТООБНОВЛЕНИЕ
+================================================= */
+
+
+/*
+ * Каждые 5 секунд админка
+ * заново считывает localStorage.
+ */
+
+
+setInterval(
+    loadStatistics,
+    5000
+);
+
+
+
+/* =================================================
+   ОБНОВЛЕНИЕ ПРИ ИЗМЕНЕНИИ
+================================================= */
+
+
+/*
+ * Если изменение localStorage
+ * произошло в другой вкладке,
+ * обновляем статистику сразу.
+ */
+
+
+window.addEventListener(
+    "storage",
+    function(event) {
+
+
+        if (
+            event.key === "vote_results" ||
+            event.key === "anonymous_ballots" ||
+            event.key === "vote_users" ||
+            event.key === "verified_users"
+        ) {
+
+            loadStatistics();
+
+        }
+
+    }
+);
+
+
+</script>
+
+
+</body>
+
+</html>

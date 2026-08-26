@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <title>VOTE — Вход администратора</title>
+
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+
+        :root {
+            --black: #111318;
+            --gray: #6d737d;
+            --light-gray: #f4f5f7;
+            --border: #e3e5e8;
+            --red: #d92d3a;
+            --red-dark: #b9232f;
+            --white: #ffffff;
+        }
+
+
+        body {
+
+            min-height: 100vh;
+
+            background: var(--light-gray);
+
+            font-family:
+                -apple-system,
+                BlinkMacSystemFont,
+                "Segoe UI",
+                Roboto,
+                Arial,
+                sans-serif;
+
+            color: var(--black);
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            padding: 24px;
+
+        }
+
+
+        /* ======================================
+           CARD
+        ====================================== */
+
+        .login-card {
+
+            width: 100%;
+
+            max-width: 430px;
+
+            background: var(--white);
+
+            border:
+                1px solid var(--border);
+
+            border-radius: 16px;
+
+            padding: 34px;
+
+        }
+
+
+        /* ======================================
+           LOGO
+        ====================================== */
+
+        .logo {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 10px;
+
+            color: var(--black);
+
+            font-size: 21px;
+
+            font-weight: 800;
+
+            text-decoration: none;
+
+        }
+
+
+        .logo-mark {
+
+            width: 36px;
+
+            height: 36px;
+
+            border-radius: 9px;
+
+            background: var(--red);
+
+            color: white;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            font-weight: 800;
+
+        }
+
+
+        /* ======================================
+           TITLE
+        ====================================== */
+
+        .label {
+
+            margin-top: 34px;
+
+            color: var(--red);
+
+            font-size: 11px;
+
+            font-weight: 800;
+
+            letter-spacing: 1px;
+
+            text-transform: uppercase;
+
+        }
+
+
+        h1 {
+
+            margin-top: 9px;
+
+            font-size: 28px;
+
+            letter-spacing: -0.7px;
+
+        }
+
+
+        .subtitle {
+
+            margin-top: 8px;
+
+            color: var(--gray);
+
+            font-size: 13px;
+
+            line-height: 1.6;
+
+        }
+
+
+        /* ======================================
+           FORM
+        ====================================== */
+
+        .form {
+
+            margin-top: 27px;
+
+        }
+
+
+        .form-group {
+
+            margin-top: 17px;
+
+        }
+
+
+        .form-group:first-child {
+
+            margin-top: 0;
+
+        }
+
+
+        label {
+
+            display: block;
+
+            margin-bottom: 7px;
+
+            font-size: 12px;
+
+            font-weight: 700;
+
+        }
+
+
+        input {
+
+            width: 100%;
+
+            height: 47px;
+
+            padding: 0 13px;
+
+            border:
+                1px solid var(--border);
+
+            border-radius: 8px;
+
+            outline: none;
+
+            font-size: 14px;
+
+            color: var(--black);
+
+            background: white;
+
+        }
+
+
+        input:focus {
+
+            border-color: var(--red);
+
+        }
+
+
+        /* ======================================
+           ERROR
+        ====================================== */
+
+        .error {
+
+            display: none;
+
+            margin-top: 14px;
+
+            padding: 11px 12px;
+
+            border-radius: 8px;
+
+            background: #fff1f2;
+
+            color: var(--red);
+
+            font-size: 12px;
+
+            line-height: 1.5;
+
+        }
+
+
+        .error.active {
+
+            display: block;
+
+        }
+
+
+        /* ======================================
+           BUTTON
+        ====================================== */
+
+        .login-button {
+
+            width: 100%;
+
+            height: 47px;
+
+            margin-top: 21px;
+
+            border: none;
+
+            border-radius: 8px;
+
+            background: var(--red);
+
+            color: white;
+
+            font-size: 13px;
+
+            font-weight: 700;
+
+            cursor: pointer;
+
+        }
+
+
+        .login-button:hover {
+
+            background: var(--red-dark);
+
+        }
+
+
+        /* ======================================
+           BACK
+        ====================================== */
+
+        .back {
+
+            display: block;
+
+            margin-top: 20px;
+
+            text-align: center;
+
+            color: var(--gray);
+
+            font-size: 12px;
+
+            text-decoration: none;
+
+        }
+
+
+        .back:hover {
+
+            color: var(--black);
+
+        }
+
+
+        /* ======================================
+           PROTOTYPE INFO
+        ====================================== */
+
+        .prototype-info {
+
+            margin-top: 23px;
+
+            padding-top: 18px;
+
+            border-top:
+                1px solid var(--border);
+
+            color: var(--gray);
+
+            font-size: 10px;
+
+            line-height: 1.6;
+
+            text-align: center;
+
+        }
+
+
+        @media (max-width: 500px) {
+
+            .login-card {
+
+                padding: 27px 22px;
+
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<div class="login-card">
+
+
+    <!-- ======================================
+         LOGO
+    ======================================= -->
+
+    <a
+        href="index.html"
+        class="logo">
+
+        <div class="logo-mark">
+            V
+        </div>
+
+        VOTE
+
+    </a>
+
+
+
+    <!-- ======================================
+         TITLE
+    ======================================= -->
+
+    <div class="label">
+        Административная зона
+    </div>
+
+
+    <h1>
+        Вход администратора
+    </h1>
+
+
+    <p class="subtitle">
+
+        Доступ к панели управления
+        и результатам голосования.
+
+    </p>
+
+
+
+    <!-- ======================================
+         FORM
+    ======================================= -->
+
+    <form
+        class="form"
+        onsubmit="loginAdmin(event)">
+
+
+        <div class="form-group">
+
+            <label for="adminLogin">
+                Логин
+            </label>
+
+
+            <input
+                type="text"
+                id="adminLogin"
+                placeholder="Введите логин"
+                autocomplete="username"
+                required>
+
+        </div>
+
+
+
+        <div class="form-group">
+
+            <label for="adminPassword">
+                Пароль
+            </label>
+
+
+            <input
+                type="password"
+                id="adminPassword"
+                placeholder="Введите пароль"
+                autocomplete="current-password"
+                required>
+
+        </div>
+
+
+
+        <!-- ERROR -->
+
+        <div
+            class="error"
+            id="loginError">
+
+        </div>
+
+
+
+        <button
+            type="submit"
+            class="login-button">
+
+            Войти
+
+        </button>
+
+
+    </form>
+
+
+
+    <!-- ======================================
+         BACK
+    ======================================= -->
+
+    <a
+        href="index.html"
+        class="back">
+
+        ← Вернуться на главную
+
+    </a>
+
+
+
+    <!-- ======================================
+         PROTOTYPE INFO
+    ======================================= -->
+
+    <div class="prototype-info">
+
+        Демо-режим прототипа.<br>
+
+        В рабочей системе учётные данные
+        администратора должны храниться
+        и проверяться на сервере.
+
+    </div>
+
+
+</div>
+
+
+
+<script>
+
+
+/*
+====================================================
+   ДАННЫЕ АДМИНИСТРАТОРА
+====================================================
+
+   ВАЖНО:
+
+   Это временные данные только для прототипа.
+
+   Не используй такой способ в реальной
+   системе голосования.
+
+====================================================
+*/
+
+
+const ADMIN_LOGIN = "admin";
+
+const ADMIN_PASSWORD = "admin123";
+
+
+/*
+====================================================
+   ПРОВЕРКА ВХОДА
+====================================================
+*/
+
+
+function loginAdmin(event) {
+
+    event.preventDefault();
+
+
+    const login =
+        document
+            .getElementById("adminLogin")
+            .value
+            .trim();
+
+
+    const password =
+        document
+            .getElementById("adminPassword")
+            .value;
+
+
+    const error =
+        document.getElementById(
+            "loginError"
+        );
+
+
+    error.classList.remove(
+        "active"
+    );
+
+
+    /*
+     * Проверяем данные.
+     */
+
+    if (
+        login === ADMIN_LOGIN &&
+        password === ADMIN_PASSWORD
+    ) {
+
+
+        /*
+         * Создаём административную сессию.
+         */
+
+        sessionStorage.setItem(
+            "admin_authenticated",
+            "true"
+        );
+
+
+        /*
+         * Переходим в админ-панель.
+         */
+
+        window.location.href =
+            "Администратор.html";
+
+
+        return;
+
+    }
+
+
+    /*
+     * Неверные данные.
+     */
+
+    error.textContent =
+        "Неверный логин или пароль.";
+
+
+    error.classList.add(
+        "active"
+    );
+
+}
+
+
+</script>
+
+
+</body>
+
+</html>
